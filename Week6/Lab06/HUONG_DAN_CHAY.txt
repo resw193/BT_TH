@@ -1,0 +1,22 @@
+LAB06 - HUONG DAN CHAY NHANH (5 BAI)
+==================================
+1. Giai nen file .rar, lay folder Lab06.
+2. Cai Node.js 22.13 tro len va VS Code.
+3. Mo Terminal/PowerShell o folder Lab06 (noi co package.json).
+4. Chay lan luot:
+   npm install
+   npx expo install --fix
+   npm run typecheck
+   npx expo start -c
+5. Mo Expo Go tren dien thoai (phien ban tuong thich Expo SDK 57),
+   cung mang Wi-Fi, quet QR. Hoac nhan w de chay tren trinh duyet.
+6. Trong App chon bai 1, 2, 3, 4, 5. Nut MENU de ve danh sach bai.
+7. BAI 2: Mac dinh dung 6 san pham offline. De goi API MockAPI that,
+   tao file .env voi mot dong:
+   EXPO_PUBLIC_API_URL=https://YOUR-PROJECT.mockapi.io/api/v1
+   Tao resource phones, nhap JSON tu mockapi_phones.json,
+   sau do npx expo start -c. Xem README.md de thao tac chi tiet.
+8. Neu loi package phien ban: npx expo install --fix.
+
+CHU Y: file RAR KHONG CHUA node_modules, can npm install co Internet.
+Mo README.md de xem huong dan chi tiet cho tung bai.
