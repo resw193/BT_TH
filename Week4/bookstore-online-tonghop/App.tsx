@@ -1,58 +1,34 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-} from "react-native";
+import {View, Text, SafeAreaView, StyleSheet,} from "react-native";
 import { StatusBar } from "expo-status-bar";
-
 import { HomeScreen } from "./screens/HomeScreen";
 import { BookDetailScreen } from "./screens/BookDetailScreen";
 import { CartScreen } from "./screens/CartScreen";
-
 import { TabBar, TabKey } from "./components/TabBar";
-
-import {
-  BOOKS,
-  CART_ITEMS,
-  CartItem,
-  Book,
-} from "./data";
+import {BOOKS, CART_ITEMS, CartItem, Book,} from "./data";
 
 export default function App() {
   // Tab hiện tại
-  const [activeTab, setActiveTab] =
-    useState<TabKey>("home");
+  const [activeTab, setActiveTab] = useState<TabKey>("home");
 
   // Sách đang được chọn để xem chi tiết
-  const [selectedBookId, setSelectedBookId] =
-    useState<number | null>(null);
+  const [selectedBookId, setSelectedBookId] = useState<number | null>(null);
 
   // Giỏ hàng
-  const [cartItems, setCartItems] =
-    useState<CartItem[]>(CART_ITEMS);
+  const [cartItems, setCartItems] = useState<CartItem[]>(CART_ITEMS);
 
   // Tìm sách đang được chọn
-  const selectedBook =
-    BOOKS.find((book) => book.id === selectedBookId) ??
-    null;
+  const selectedBook = BOOKS.find((book) => book.id === selectedBookId) ?? null;
 
   // Tổng số lượng sản phẩm trong giỏ
-  const cartCount = cartItems.reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   // ==============================
   // THÊM SÁCH VÀO GIỎ
   // ==============================
-
   const handleAddToCart = (book: Book) => {
     setCartItems((currentItems) => {
-      const existingItem = currentItems.find(
-        (item) => item.book.id === book.id
-      );
+      const existingItem = currentItems.find((item) => item.book.id === book.id);
 
       // Nếu sách đã có trong giỏ
       // -> tăng số lượng
@@ -82,7 +58,6 @@ export default function App() {
   // ==============================
   // CHUYỂN TAB
   // ==============================
-
   const handleChangeTab = (tab: TabKey) => {
     // Khi chuyển tab thì thoát màn chi tiết sách
     setSelectedBookId(null);
@@ -93,7 +68,6 @@ export default function App() {
   // ==============================
   // NỘI DUNG CHÍNH
   // ==============================
-
   const renderContent = () => {
     // Nếu đang chọn sách
     // -> hiện màn chi tiết
@@ -102,9 +76,7 @@ export default function App() {
         <BookDetailScreen
           book={selectedBook}
           onBack={() => setSelectedBookId(null)}
-          onAddToCart={() =>
-            handleAddToCart(selectedBook)
-          }
+          onAddToCart={() =>handleAddToCart(selectedBook)}
         />
       );
     }
@@ -114,12 +86,8 @@ export default function App() {
       return (
         <HomeScreen
           cartCount={cartCount}
-          onPressBook={(id) =>
-            setSelectedBookId(id)
-          }
-          onPressCart={() =>
-            setActiveTab("cart")
-          }
+          onPressBook={(id) =>setSelectedBookId(id)}
+          onPressCart={() =>setActiveTab("cart")}
         />
       );
     }
@@ -132,19 +100,13 @@ export default function App() {
     // TAB DANH MỤC
     if (activeTab === "category") {
       return (
-        <Placeholder
-          title="Danh mục"
-          text="Nội dung Danh mục đang được minh họa trên Trang chủ."
-        />
+        <Placeholder title="Danh mục" text="Nội dung Danh mục đang được minh họa trên Trang chủ." />
       );
     }
 
     // TAB TÀI KHOẢN
     return (
-      <Placeholder
-        title="Tài khoản"
-        text="Tài liệu hiện tại chưa yêu cầu xây dựng màn hình Tài khoản."
-      />
+      <Placeholder title="Tài khoản" text="Tài liệu hiện tại chưa yêu cầu xây dựng màn hình Tài khoản." />
     );
   };
 
@@ -153,13 +115,9 @@ export default function App() {
       <View style={styles.body}>
         {renderContent()}
 
-        {/* Khi đang xem chi tiết sách thì ẩn TabBar
-            để thanh Thêm vào giỏ không bị chồng lên */}
+        {/* Khi đang xem chi tiết sách thì ẩn TabBar để thanh Thêm vào giỏ không bị chồng lên */}
         {!selectedBook && (
-          <TabBar
-            active={activeTab}
-            onChange={handleChangeTab}
-          />
+          <TabBar active={activeTab} onChange={handleChangeTab} />
         )}
       </View>
 
@@ -171,14 +129,7 @@ export default function App() {
 // ==============================
 // PLACEHOLDER
 // ==============================
-
-function Placeholder({
-  title,
-  text,
-}: {
-  title: string;
-  text: string;
-}) {
+function Placeholder( {title, text}: {title: string; text: string;}) {
   return (
     <View style={styles.placeholder}>
       <Text style={styles.placeholderTitle}>
@@ -195,7 +146,6 @@ function Placeholder({
 // ==============================
 // STYLE
 // ==============================
-
 const styles = StyleSheet.create({
   root: {
     flex: 1,

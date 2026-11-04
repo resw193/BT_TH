@@ -9,15 +9,8 @@ import { BookGrid } from "../components/BookGrid";
 import { FloatingCartButton } from "../components/FloatingCartButton";
 import { BOOKS } from "../data";
 
-export function HomeScreen({
-  cartCount,
-  onPressBook,
-  onPressCart,
-}: {
-  cartCount: number;
-  onPressBook: (id: number) => void;
-  onPressCart: () => void;
-}) {
+// Syntax: export function HomeScreen(props: {cartCount: number; onPressBook: (id: number) => void; onPressCart: () => void;}) {}
+export function HomeScreen({cartCount, onPressBook, onPressCart} : {cartCount: number; onPressBook: (id: number) => void; onPressCart: () => void}) {
   return (
     // flex:1 + position mặc định 'relative' -> làm containing block cho
     // FloatingCartButton absolute bên dưới, thoát khỏi mọi quan hệ cha khác.

@@ -6,15 +6,7 @@ import React from "react";
 import { View, ScrollView, Text, Image, Pressable, StyleSheet } from "react-native";
 import { Book } from "../data";
 
-export function BookDetailScreen({
-  book,
-  onBack,
-  onAddToCart,
-}: {
-  book: Book;
-  onBack: () => void;
-  onAddToCart: () => void;
-}) {
+export function BookDetailScreen({book, onBack, onAddToCart}: {book: Book; onBack: () => void; onAddToCart: () => void}) {
   return (
     <View style={styles.screen}>
       <Pressable style={styles.backButton} onPress={onBack}>
